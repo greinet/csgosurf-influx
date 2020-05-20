@@ -6,7 +6,6 @@
 # Install plugins
 if [ ! -f "/steam/csgo/pluginmarker" ]; then
   touch /steam/csgo/pluginmarker
-  mkdir /steam/plugins
   echo "Installing plugins"
   cd /steam/plugins
   
@@ -46,8 +45,8 @@ sv_minupdaterate 128" >> cfg/server.cfg
   wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B-gvqLVXDjSVX3ZnLXJ4YkdJX2c' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=0B-gvqLVXDjSVX3ZnLXJ4YkdJX2c" -O tier-1.tar.gz && rm -rf /tmp/cookies.txt && tar -xzvf tier-1.tar.gz && bunzip2 tier_1/* && mv tier_1 maps && rm tier-1.tar.gz
   
   #Creating maplist and mapcycle
-  ls -1 | sed -e 's/\.bsp$//' >> /steam/plugins/mapcycle.txt
-  ls -1 | sed -e 's/\.bsp$//' >> /steam/plugins/maplist.txt
+  ls -1 maps | sed -e 's/\.bsp$//' >> /steam/plugins/mapcycle.txt
+  ls -1 maps | sed -e 's/\.bsp$//' >> /steam/plugins/maplist.txt
   
   #Creating mapgroup
   input="/steam/plugins/maplist.txt"
