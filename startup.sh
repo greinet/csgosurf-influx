@@ -43,26 +43,28 @@ sv_minupdaterate 128" >> cfg/server.cfg
   rm -rf mapinis
   
   #Downloading Maps
-  #wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B-gvqLVXDjSVX3ZnLXJ4YkdJX2c' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=0B-gvqLVXDjSVX3ZnLXJ4YkdJX2c" -O tier-1.tar.gz && rm -rf /tmp/cookies.txt && tar -xzvf tier-1.tar.gz && bunzip2 tier_1/* && mv tier_1 maps && rm tier-1.tar.gz
+  wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B-gvqLVXDjSVX3ZnLXJ4YkdJX2c' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=0B-gvqLVXDjSVX3ZnLXJ4YkdJX2c" -O tier-1.tar.gz && rm -rf /tmp/cookies.txt && tar -xzvf tier-1.tar.gz && bunzip2 tier_1/* && mv tier_1 maps && rm tier-1.tar.gz
   
   #Creating maplist and mapcycle
-  #ls -1 maps | sed -e 's/\.bsp$//' >> /steam/plugins/mapcycle.txt
-  #ls -1 maps | sed -e 's/\.bsp$//' >> /steam/plugins/maplist.txt
+  ls -1 maps | sed -e 's/\.bsp$//' >> /steam/plugins/mapcycle.txt
+  ls -1 maps | sed -e 's/\.bsp$//' >> /steam/plugins/maplist.txt
   
   #Creating mapgroup
-  #input="/steam/plugins/maplist.txt"
-  #number=0
-  #while IFS= read -r line
-  #do
-  #  echo "                \"$line\" \"$number\"" >> gamemodes_server.txt
-  #  number=$(( number + 1 ))
-  #done < "$input"
-#
-  #echo "            }
-  #      }
-  #  }
-#}" >> /steam/plugins/gamemodes_server.txt
- # 
+  wget -O gamemodes_server.txt https://raw.githubusercontent.com/greinet/csgosurf-influx/master/gamemodes_server.txt
+  input="/steam/plugins/maplist.txt"
+  number=0
+  while IFS= read -r line
+  do
+    echo "                \"$line\" \"$number\"" >> gamemodes_server.txt
+    number=$(( number + 1 ))
+  done < "$input"
+
+  echo "            }
+        }
+    }
+}" >> gamemodes_server.txt
+  chmod 755 gamemodes_server.txt
+  
   #Moving files
   chmod -R 777 /steam/plugins
   cp -r /steam/plugins/. /steam/csgo/csgo
@@ -72,5 +74,5 @@ sv_minupdaterate 128" >> cfg/server.cfg
 fi
 
 # Start csgo
-#/steam/csgo/srcds_run -debug -game csgo -console -usercon -strictportbind -port 27015 +clientport 27005 +tv_port 27020 -tickrate 128 +log on +game_type 0 +game_mode 0 +mapgroup surfmaps +map surf_aircontrol_ksf -authkey -unsecure -insecure +rcon_password rconpw123 +sv_setsteamaccount $GSLT -net_port_try 1 +hostname hostname
-/steam/csgo/srcds_run -game csgo -console -usercon -strictportbind -port 27015 +clientport 27005 +tv_port 27020 -tickrate 128 +log on +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust -authkey -unsecure -insecure +rcon_password rconpw123 +sv_setsteamaccount $GSLT -net_port_try 1 +hostname hostname
+/steam/csgo/srcds_run -game csgo -console -usercon -strictportbind -port 27015 +clientport 27005 +tv_port 27020 -tickrate 128 +log on +game_type 0 +game_mode 0 +mapgroup surfmaps +map surf_mesa -authkey -unsecure -insecure +rcon_password rconpw123 +sv_setsteamaccount $GSLT -net_port_try 1 +hostname hostname
+#/steam/csgo/srcds_run -game csgo -console -usercon -strictportbind -port 27015 +clientport 27005 +tv_port 27020 -tickrate 128 +log on +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust -authkey -unsecure -insecure +rcon_password rconpw123 +sv_setsteamaccount $GSLT -net_port_try 1 +hostname hostname
