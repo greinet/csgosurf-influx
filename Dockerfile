@@ -15,7 +15,7 @@ RUN apt-get -y update \
     && mkdir $DIR_STEAM \
     && mkdir $DIR_STEAMCMD \
     && mkdir $DIR_CSGO \
-    && mkdir$ DIR_PLUGINS \
+    && mkdir $DIR_PLUGINS \
     && chown steam:steam $DIR_STEAM \
     && chown steam:steam $DIR_STEAMCMD \
     && chown steam:steam $DIR_CSGO \
