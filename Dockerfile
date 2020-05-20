@@ -4,6 +4,7 @@ MAINTAINER Andreas Greiner <andreasgreiner@online.de>
 ENV DIR_STEAM /steam
 ENV DIR_STEAMCMD /steam/steamcmd
 ENV DIR_CSGO /steam/csgo
+ENV DIR_PLUGINS /steam/plugins
 
 
 RUN apt-get -y update \
@@ -14,9 +15,11 @@ RUN apt-get -y update \
     && mkdir $DIR_STEAM \
     && mkdir $DIR_STEAMCMD \
     && mkdir $DIR_CSGO \
+    && mkdir$ DIR_PLUGINS \
     && chown steam:steam $DIR_STEAM \
     && chown steam:steam $DIR_STEAMCMD \
-    && chown steam:steam $DIR_CSGO
+    && chown steam:steam $DIR_CSGO \
+    && chown steam:steam $DIR_PLUGINS
 
 USER steam
 
@@ -27,7 +30,10 @@ WORKDIR $DIR_STEAMCMD
 
 COPY --chown=steam:steam startup.sh $DIR_STEAMCMD/startup.sh
 
-RUN chmod 777 $DIR_STEAMCMD/startup.sh
+COPY -chown=steam:steam gamemodes_server.txt $DIR_PLUGINS/gamemodes_server.txt
+
+RUN chmod 755 $DIR_STEAMCMD/startup.sh
+RUN chmod 755 $DIR_STEAMCMD/startup.sh
 
 VOLUME $DIR_CSGO
 
