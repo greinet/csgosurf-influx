@@ -1,0 +1,25 @@
+"gamemodes_server.txt"
+{
+    "gameTypes"
+    {
+        "classic"
+        {
+            "gameModes"
+            {
+                "casual"
+                {
+                    "mapgroupsMP"
+                    {
+                        "surfmaps"
+                    }
+                }
+            }
+        }
+    }
+    "mapgroups"
+    {
+        "surfmaps"
+        {
+            "name" "surfmaps"
+            "maps"
+            {
