@@ -61,7 +61,7 @@ sv_minupdaterate 128" >> cfg/server.cfg
   echo "            }
         }
     }
-}" >> /steam/plguins/gamemodes_server.txt
+}" >> /steam/plugins/gamemodes_server.txt
   
   #Moving files
   chmod -R 777 /steam/plugins
