@@ -4,8 +4,8 @@
 ./steamcmd.sh +login anonymous +force_install_dir ../csgo +app_update 740 validate +quit
 
 # Install plugins
-if [ ! -f "/steam/pluginmarker" ]; then
-  touch /steam/pluginmarker
+if [ ! -f "/steam/csgo/pluginmarker" ]; then
+  touch /steam/csgo/pluginmarker
   mkdir /steam/plugins
   echo "Installing plugins"
   cd /steam/plugins
@@ -23,6 +23,9 @@ sv_minupdaterate 128" >> cfg/server.cfg
   echo "Installing Sourcemod and Metamod"
   curl -sqL "https://mms.alliedmods.net/mmsdrop/1.10/mmsource-1.10.7-git971-linux.tar.gz"  | tar xz -C /steam/plugins/
   curl -sqL "https://sm.alliedmods.net/smdrop/1.10/sourcemod-1.10.0-git6488-linux.tar.gz"  | tar xz -C /steam/plugins/
+  
+  #Set Sourcemod admin
+  echo $ADMIN"      99:z" >> /steam/plugins/addons/sourcemod/configs/admins_simple.ini
   
   #InfluxTimer
   echo "Installing InfluxTimer"
