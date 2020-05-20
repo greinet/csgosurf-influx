@@ -30,7 +30,7 @@ WORKDIR $DIR_STEAMCMD
 
 COPY --chown=steam:steam startup.sh $DIR_STEAMCMD/startup.sh
 
-COPY -chown=steam:steam gamemodes_server.txt $DIR_PLUGINS/gamemodes_server.txt
+COPY --chown=steam:steam gamemodes_server.txt $DIR_PLUGINS/gamemodes_server.txt
 
 RUN chmod 755 $DIR_STEAMCMD/startup.sh
 RUN chmod 755 $DIR_STEAMCMD/startup.sh
