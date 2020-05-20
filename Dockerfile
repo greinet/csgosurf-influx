@@ -9,7 +9,7 @@ ENV DIR_PLUGINS /steam/plugins
 
 RUN apt-get -y update \
     && apt-get -y upgrade \
-    && apt-get -y install lib32gcc1 curl net-tools lib32stdc++6 python3 zip unzip gdb wget \
+    && apt-get -y install lib32gcc1 curl net-tools lib32stdc++6 python3 zip unzip wget \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && useradd steam \
     && mkdir $DIR_STEAM \
@@ -33,7 +33,7 @@ COPY --chown=steam:steam startup.sh $DIR_STEAMCMD/startup.sh
 COPY --chown=steam:steam gamemodes_server.txt $DIR_PLUGINS/gamemodes_server.txt
 
 RUN chmod 755 $DIR_STEAMCMD/startup.sh
-RUN chmod 755 $DIR_STEAMCMD/startup.sh
+RUN chmod 755 $DIR_PLUGINS/gamemodes_server.txt
 
 VOLUME $DIR_CSGO
 
