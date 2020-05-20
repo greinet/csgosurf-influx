@@ -10,7 +10,7 @@
                 {
                     "mapgroupsMP"
                     {
-                        "surfmaps"
+                        "surfmaps" ""
                     }
                 }
             }
